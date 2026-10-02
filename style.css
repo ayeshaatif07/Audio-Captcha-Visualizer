@@ -1,0 +1,279 @@
+/* ////////////////////////////////////////MY CODE/////////////////////////////////////////////// */
+/* GLOBAL RESET */
+/* Remove default browser spacing and ensure consistent box sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* BODY & CANVAS */
+/* Base page styling */
+body {
+  margin: 0;
+  background: #111;        
+  color: #eee;            
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+  overflow: hidden;        /* Prevent scrollbars during visualization */
+}
+
+/* Ensure p5 canvas fills its area cleanly */
+canvas {
+  display: block;
+}
+
+/* LOADING INDICATOR */
+/* Centered loading overlay shown while libraries initialize */
+#loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.9);
+  padding: 30px 50px;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  text-align: center;
+  z-index: 9999;
+}
+
+/* Loading title */
+#loading h2 {
+  margin-bottom: 15px;
+  color: #4CAF50;          
+}
+
+/* Loading subtitle text */
+#loading p {
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* Animated spinner */
+.spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid #4CAF50;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+/* Spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/*BUTTONS*/
+/* Shared button behavior */
+button {
+  transition: all 0.2s ease;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Hover feedback for enabled buttons */
+button:hover:not([disabled]) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Active (pressed) state */
+button:active:not([disabled]) {
+  transform: translateY(0);
+}
+
+/* Disabled button appearance */
+button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/*ERROR MESSAGE*/
+/* Floating error banner shown at top of screen */
+.error-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f44336;     
+  color: white;
+  padding: 15px 30px;
+  border-radius: 5px;
+  display: none;         
+  z-index: 10000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  font-size: 14px;
+}
+
+/*INSTRUCTIONS PANEL*/
+/* Fixed help panel explaining exercises */
+#instructions {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 15px 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 300px;
+  font-size: 12px;
+  line-height: 1.6;
+  z-index: 100;
+}
+
+/* Instructions title */
+#instructions h3 {
+  margin-bottom: 10px;
+  color: #4CAF50;
+  font-size: 14px;
+}
+
+/* Instruction list styling */
+#instructions ul {
+  margin-left: 15px;
+  list-style-type: disc;
+}
+
+#instructions li {
+  margin: 5px 0;
+}
+
+#instructions strong {
+  color: #fff;
+}
+
+/*INPUT FIELDS */
+/* Shared styling for text inputs and selects*/
+input[type="text"],
+input[type="number"],
+select {
+  padding: 8px;
+  border: 1px solid #666;
+  border-radius: 4px;
+  background: #222;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+/* Focus state for form controls */
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+/*DROPDOWN / SELECT*/
+/* Cursor hint for dropdowns */
+select {
+  padding: 6px;
+  cursor: pointer;
+}
+
+/* Dropdown options styling */
+select option {
+  background: #222;
+  color: #fff;
+}
+
+/*TEXT & TYPOGRAPHY*/
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+}
+
+/* Small helper text */
+small {
+  font-size: 0.85em;
+  opacity: 0.8;
+}
+
+/* Emphasized text */
+strong,
+b {
+  font-weight: 600;
+}
+
+/*RESPONSIVE DESIGN*/
+/* Tablet and smaller screens */
+@media (max-width: 768px) {
+  /* Hide instructions to reduce clutter */
+  #instructions {
+    display: none;
+  }
+
+  /* Reduce button size */
+  button {
+    padding: 6px 10px !important;
+    font-size: 13px !important;
+  }
+
+  /* Reduce input text size */
+  input[type="text"],
+  select {
+    font-size: 13px;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+  body {
+    font-size: 13px;
+  }
+}
+
+/*ACCESSIBILITY*/
+/* Keyboard focus indicator */
+button:focus,
+input:focus,
+select:focus {
+  outline: 2px solid #4CAF50;
+  outline-offset: 2px;
+}
+
+/* High-contrast mode support */
+@media (prefers-contrast: high) {
+  body {
+    background: #000;
+    color: #fff;
+  }
+}
+
+/* Reduced motion support for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Replace spinner animation with static indicator */
+  .spinner {
+    animation: none;
+    border: 3px solid #4CAF50;
+  }
+}
+
+/*PRINT STYLES*/
+/* Hide interactive elements when printing */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  #instructions,
+  #loading,
+  #error,
+  canvas {
+    display: none;
+  }
+}
+
+/* ////////////////////////////////////////MY CODE/////////////////////////////////////////////// */
